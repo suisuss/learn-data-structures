@@ -1,6 +1,6 @@
 
 
-class MinHeap:
+class MaxHeap:
 
   def __init__(self, capacity=10, size=0):
     self.capacity = capacity
@@ -64,8 +64,8 @@ class MinHeap:
 
   def heapify_up(self):
     index = self.size - 1
-    # While the element has a parent and that parent's value is greater than the elements value
-    while self.has_parent(index) and self.get_parent(index) > self.heap_array[index]:
+    # While the element has a parent and that parent's value is less than the elements value
+    while self.has_parent(index) and self.get_parent(index) < self.heap_array[index]:
       parent_index = self.get_parent_index(index)
       self.swap(index, parent_index)
       index = parent_index
@@ -77,33 +77,39 @@ class MinHeap:
     # While the element has a left child
     while self.has_left_child(index):
 
-      smaller_child_index = self.get_left_child_index(index)
+      larger_child_index = self.get_left_child_index(index)
 
-      if self.has_right_child(index) and self.get_right_child(index) < self.get_left_child(index):
-        smaller_child_index = get_right_child_index(index)
+      if self.has_right_child(index) and self.get_right_child(index) > self.get_left_child(index):
+        larger_child_index = get_right_child_index(index)
 
-      if self.heap_array[index] < self.heap_array[smaller_child_index]:
+      if self.heap_array[index] > self.heap_array[larger_child_index]:
         break
       else:
-        self.swap(index, smaller_child_index)
+        self.swap(index, larger_child_index)
       
-      index = smaller_child_index
+      index = larger_child_index
 
     return
     
   
-minheap = MinHeap()
+maxheap = MaxHeap()
 
-minheap.add(2)
-minheap.add(15)
-minheap.add(3)
+maxheap.add(2)
+maxheap.add(15)
+maxheap.add(3)
 
-print(minheap.peek())
-print(minheap.pull())
+print(maxheap.peek())
+print(maxheap.pull())
+print(maxheap.heap_array)
 
-minheap.add(1)
-print(minheap.peek())
+maxheap.add(1)
+print(maxheap.peek())
 
-print(minheap.heap_array)
-print(minheap.size)
+print(maxheap.heap_array)
+print(maxheap.size)
+
+maxheap.add(15)
+print(maxheap.peek())
+
+print(maxheap.heap_array)
 
