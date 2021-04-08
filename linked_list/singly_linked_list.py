@@ -50,7 +50,6 @@ class SinglyLinkedList:
     while current_node.next != None:
       print(f'{current_node.data} -- > {current_node.next.data}')
       current_node = current_node.next
-    print(current_node.data)
     return
     
 
@@ -58,11 +57,21 @@ singlyLinkedList = SinglyLinkedList()
 
 singlyLinkedList.print()
 
-headNode = Node(1)
-singlyLinkedList.append(headNode)
+singlyLinkedList.append(1)
 
-for i in range(2, 4):
-  singlyLinkedList.append(Node(i))
+singlyLinkedList.prepend(2)
 
 singlyLinkedList.print()
 
+print('\n')
+
+for i in range(3, 4):
+  singlyLinkedList.append(i)
+
+singlyLinkedList.print()
+
+print('\n')
+
+singlyLinkedList.delete_with_value(2)
+
+singlyLinkedList.print()
